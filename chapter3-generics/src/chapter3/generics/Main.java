@@ -1,5 +1,6 @@
 package chapter3.generics;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,11 @@ public class Main {
 
 	public static void main(String[] args) throws DataListOverFlowException {
 		
+		runGenericMethod();
+		
+		/*
+		runGenericClassSample();
+		 
 		runGenericStack();
 		
 		System.out.println("-------------------------");
@@ -37,6 +43,7 @@ public class Main {
 		runJokerWildCard();
 		
 		runGenericSuperLowerBound();
+		*/
 	}
 	
 	public static void runGenericStack() throws DataListOverFlowException {
@@ -86,7 +93,31 @@ public class Main {
 		
 		
 		// ilkel (primitive) veri tipleri Generic olarak kullanılamaz!
-		// Stack<double> doubleStack = new Stack<double>(5); 
+		
+		/*
+		Stack<int> doubleStack = new Stack<int>(5); 
+		doubleStack.push(5);
+		doubleStack.push(6);
+		
+		System.out.println(doubleStack.pop());
+		*/
+		
+	}
+	
+	public static void runGenericClassSample() {
+		
+		Product<Double> product1 = new Product<Double>(100.56); 
+		
+		Product<Integer> product2 = new Product<Integer>(50); 
+		
+		Product<Long> product3 = new Product<Long>(51999292920L); 
+		
+		System.out.println(product1.getPrice());
+		
+		System.out.println(product2.getPrice());
+
+		System.out.println(product3.getPrice());
+
 		
 	}
 	
@@ -207,7 +238,7 @@ public class Main {
 		// int repeatedItemCount4 = RepeatItemCounter.countAllRepeatedItems(numbers, 100);
 		
 		
-		Integer[] numbers = { 4, 45, 54, 3, 4, 100, 100, 90, 91, 90};
+		Integer[] numbers = { 4, 45, 54, 3, 4, 100, 100, 100, 90, 91, 90};
 		int repeatedItemCount3 = RepeatItemCounter.countAllRepeatedItems(numbers, 4);
 		int repeatedItemCount4 = RepeatItemCounter.countAllRepeatedItems(numbers, 100);
 		
@@ -217,7 +248,9 @@ public class Main {
 	
 	public static void runJokerWildCard() {
 		
-		List<String> stringList = new ArrayList<String>(); 
+		Stack stck = new Stack(10);
+		
+		List<String> stringList = new ArrayList<String> (); 
 		stringList.add("A");
 		stringList.add("B");
 		stringList.add("C");
@@ -226,11 +259,8 @@ public class Main {
 		printAll(stringList);
 		
 		
-		List<Long> longList = new ArrayList<Long>(); 
-		longList.add(5L);
-		longList.add(15L);
-		longList.add(25L);
-		longList.add(35L);
+		List<File> longList = new ArrayList<File>(); 
+
 		
 		
 		printAll(longList);
@@ -239,6 +269,7 @@ public class Main {
 	public static void printAll(List<?> items) {
 		
 		for(Object item : items) {
+			
 			System.out.print(item + " ");
 		}
 		System.out.println();
@@ -266,6 +297,17 @@ public class Main {
 		electricalCars.add(new ElectricCar("Mercedes", "35 Aa 547", 200));
 		
 		showVehicleItems(electricalCars);
+		
+		
+		/*
+		 * Book tipindeki sınıf EelectricalCar sınıfının kalıtım hiyerarşisinde yer almadığı için 
+		 * "showVehicleItems" fonksiyonu bu listeyi çalıştıramaz.
+		 * 
+		List<Book> bookList = new ArrayList<Book>();
+		bookList.add(new Book("Java Kitabı",9));
+		
+		showVehicleItems(bookList);
+		*/
 	}
 	
 	public static <T> void showVehicleItems(List<? super ElectricCar> vehicles) {

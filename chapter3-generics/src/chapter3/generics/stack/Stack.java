@@ -4,6 +4,7 @@ import chapter3.generics.datalist.DataList;
 import chapter3.generics.datalist.DataListOverFlowException;
 
 // T tipine kısıtlama getirmediğimiz için varsayılan olarak "Object" alt tipini alıyor.
+
 public class Stack <T> implements DataList<T> {
 
 	private int topIndex;
